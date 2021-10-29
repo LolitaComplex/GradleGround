@@ -1,0 +1,55 @@
+apply plugin: 'groovy'
+
+targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    jcenter()
+    google()
+    mavenCentral()
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+}
+
+// 调用 maven插件，用来发布
+apply plugin: 'maven-publish'
+
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            // 设置发布目录为本地目录
+//            repository(url: uri("../repo")) {
+//                // 设置groupId，包名
+//                pom.groupId = 'com.doing.router'
+//                // 设置工程名
+//                pom.artifactId = 'RouterPlugin'
+//                // 设置版本号
+//                pom.version = "0.0.1"
+//            }
+//        }
+//    }
+//}
+
+
+afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                artifactId = 'RouterPlugin'
+                groupId = 'com.doing.router'
+                version = '0.0.1'
+                from components.java
+            }
+        }
+
+        repositories {
+            maven {
+//                url = layout.buildDirectory.dir('repo')
+                url "${getRootDir().absolutePath}${File.separator}PluginModule${File.separator}repo"
+            }
+        }
+    }
+}
