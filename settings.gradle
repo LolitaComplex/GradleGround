@@ -10,4 +10,6 @@ rootProject.name = "GradleRouter"
 include ':BuildSrcApp'
 include ':PluginModule:PluginApp'
 include ':PluginModule:RouterPlugin'
-
+include ':APTRouterModule:APTAnnotation'
+include ':APTRouterModule:APTProcessor'
+include ':APTRouterModule:APTRouterApp'
