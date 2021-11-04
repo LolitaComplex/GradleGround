@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -38,5 +39,5 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
 
     implementation project(":APTRouterModule:APTAnnotation")
-    annotationProcessor project(":APTRouterModule:APTProcessor")
+    kapt project(":APTRouterModule:APTProcessor")
 }

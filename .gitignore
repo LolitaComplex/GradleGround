@@ -14,3 +14,11 @@
 .cxx
 local.properties
 .idea
+/APTRouterModule/APTAnnotation/build
+/APTRouterModule/APTProcessor/build
+/APTRouterModule/APTRouterApp/build
+/BuildSrcApp/build
+/buildSrc/build
+/PluginModule/PluginApp/build
+/PluginModule/RouterPlugin/build
+

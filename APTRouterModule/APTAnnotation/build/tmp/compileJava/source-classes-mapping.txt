@@ -1,2 +1,0 @@
-com/doing/router/apt/annotations/DoingRouter.java
- com.doing.router.apt.annotations.DoingRouter
