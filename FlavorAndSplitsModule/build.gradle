@@ -1,0 +1,61 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.doing.flavorandsplits"
+        minSdk 26
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    splits {
+        abi {
+            reset() //重置ABI列表为只空字符串，一半和include、exclude一起使用，如果要用必须在include和exclude前面
+            enable true //是否启用ABI拆分机制
+            universalApk true //是否打包一个通用版本，包含所有的ABI，默认值为 false
+            include 'armeabi-v7a','arm64-v8a' //指明要包含哪些ABI
+            // exclude 'x86' //默认包含下所有ABI，可以移除一些ABI
+        }
+    }
+
+    flavorDimensions "default"
+//
+    productFlavors {
+        publicServer {}
+        qaServer {}
+    }
+
+    android.applicationVariants.all { variant ->
+        println "FlavorName: ${variant.flavorName}    VarientName: ${variant.name}"
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+}

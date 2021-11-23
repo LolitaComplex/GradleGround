@@ -2,3 +2,37 @@ apply plugin: 'java'
 
 //targetCompatibility = JavaVersion.VERSION_1_8
 //sourceCompatibility = JavaVersion.VERSION_1_8
+
+
+def properties = new Properties()
+// newDataInputStream方法是ResourceGroovyMethods定义的静态方法，这里也有kt中加强方式
+def dataInputStream = project.rootProject.file('gradle.properties').newDataInputStream()
+properties.load(dataInputStream)
+
+def pomUrl = properties.getProperty("pomUrl")
+def groupId = properties.getProperty("groupId")
+def version = properties.getProperty("version")
+def projectProperties = new Properties()
+projectProperties.load(project.file("gradle.properties").newDataInputStream())
+def artifactId = projectProperties.getProperty("artifactId")
+//
+//apply plugin: 'maven'
+//
+//this.project.afterEvaluate {
+//    publishing {
+//        publications {
+//            maven (MavenPublication) {
+//                this.artifactId = artifactId
+//                this.groupId = groupId
+//                this.version = version
+//            }
+//        }
+//
+//        respositories {
+//            maven {
+//
+//            }
+//        }
+//    }
+//}
+
