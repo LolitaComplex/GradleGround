@@ -1,0 +1,84 @@
+gradle.buildStarted { gradle ->
+    println "Gradle学习： Build Started"
+}
+
+gradle.beforeSettings { settings ->
+    println "Gradle学习：Before Settings"
+}
+
+gradle.settingsEvaluated { settings ->
+    println "Gradle学习: Setting Evaluated $settings"
+}
+
+gradle.projectsLoaded { gradle ->
+    println "Gradle学习： Project Loaded $gradle"
+}
+
+gradle.beforeProject { project ->
+    println "Gradle学习：Before Project $project"
+}
+
+gradle.afterProject { project ->
+    println "Gradle学习：After Project $project"
+}
+
+gradle.projectsEvaluated { gradle ->
+    println "Gradle学习：Projects Evaluated $gradle"
+}
+
+gradle.getTaskGraph().addTaskExecutionListener(new TaskExecutionListener() {
+    @Override
+    void beforeExecute(Task task) {
+        println "Gradle学习: Before Task Execute $task"
+    }
+
+    @Override
+    void afterExecute(Task task, TaskState taskState) {
+        println "Gradle学习: After Task Execute $task"
+    }
+})
+
+gradle.buildFinished { gradle ->
+    println "Gradle学习: Build Finished $gradle"
+}
+
+gradle.addProjectEvaluationListener(new ProjectEvaluationListener() {
+    @Override
+    void beforeEvaluate(Project project) {
+
+    }
+
+    @Override
+    void afterEvaluate(Project project, ProjectState projectState) {
+
+    }
+})
+
+gradle.addBuildListener(new BuildListener() {
+    @Override
+    void buildStarted(Gradle gradle) {
+
+    }
+
+    @Override
+    void settingsEvaluated(Settings settings) {
+
+    }
+
+    @Override
+    void projectsLoaded(Gradle gradle) {
+
+    }
+
+    @Override
+    void projectsEvaluated(Gradle gradle) {
+
+    }
+
+    @Override
+    void buildFinished(BuildResult buildResult) {
+
+    }
+})
+
+//gradle.addListener()

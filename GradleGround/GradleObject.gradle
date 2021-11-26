@@ -1,0 +1,5 @@
+gradle.projectsEvaluated { Gradle gradle ->
+    gradle.rootProject.childProjects.each {name, p ->
+        println("子Project - name: $name dir: ${p.projectDir}")
+    }
+}

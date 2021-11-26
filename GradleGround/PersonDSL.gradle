@@ -1,0 +1,54 @@
+class DefaultConfig {
+    private String applicationId
+    private int versionCode
+
+    def applicationId(String applicationId) {
+        this.applicationId = applicationId
+    }
+
+    def versionCode(int versionCode) {
+        this.versionCode = versionCode
+    }
+}
+
+class Android {
+
+    private int compileSdkVersion
+    public DefaultConfig defaultConfig
+
+    Android() {
+        this.defaultConfig = new DefaultConfig()
+    }
+
+    def compileSdkVersion(int compileSdkVersion) {
+        this.compileSdkVersion = compileSdkVersion;
+    }
+
+    def defaultConfig(Closure closure) {
+        closure.setDelegate(this.defaultConfig)
+        closure.call()
+    }
+
+    String toString() {
+        return "Android: compileSdkVersion: $compileSdkVersion " +
+                "\t defaultConfig: $defaultConfig"
+    }
+}
+
+def android(Closure closure) {
+    def android = new Android()
+    closure.setDelegate(android)
+    closure.call()
+
+    println(android)
+}
+
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        this.applicationId "com.obias.yeet"
+        this.versionCode 50
+    }
+}
