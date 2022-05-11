@@ -21,7 +21,7 @@ import javax.lang.model.element.TypeParameterElement;
 import javax.lang.model.type.TypeMirror;
 
 @AutoService(Processor.class)
-@SupportedSourceVersion(SourceVersion.RELEASE_8)
+//@SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class DoingRouterProcessor extends AbstractProcessor {
 
     private static final String TAG = "DoingRouterProcessor";
